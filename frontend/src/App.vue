@@ -6,7 +6,8 @@
       <router-link to="/bootstrap">Bootstrap</router-link> |
       <router-link to="/user">User</router-link> |
       <router-link to="/login">Login</router-link> |
-      <router-link to="/protected">Protected</router-link>
+      <router-link to="/protected">Protected</router-link> |
+      <router-link to="/latetimes">LateTimes</router-link>
     </div>
     <router-view :hellomsg="msg"></router-view>
   </div>
@@ -20,6 +21,9 @@ export default {
     return {
       msg: 'Welcome to your Vue.js powered Spring Boot App'
     }
+  },
+  created() {
+    this.$store.dispatch('loadLateTimes');
   }
 }
 </script>

@@ -9,7 +9,8 @@ export default new Vuex.Store({
         loginSuccess: false,
         loginError: false,
         userName: null,
-        userPass: null
+        userPass: null,
+        lateTimes: []
     },
     mutations: {
         login_success(state, payload){
@@ -20,6 +21,9 @@ export default new Vuex.Store({
         login_error(state, payload){
             state.loginError = true;
             state.userName = payload.userName;
+        },
+        setLateTimes(state, latetimes){
+            state.lateTimes = latetimes
         }
     },
     actions: {
@@ -48,12 +52,41 @@ export default new Vuex.Store({
                         reject("Invalid credentials!")
                     })
             })
+        },
+        loadLateTimes({commit}) {
+            api.getLateTimes()
+              .then(response => {
+                  commit('setLateTimes', response.data);
+              })
+              .catch(error => {
+                  console.log("Error: " + error);
+              })
         }
     },
     getters: {
         isLoggedIn: state => state.loginSuccess,
         hasLoginErrored: state => state.loginError,
         getUserName: state => state.userName,
-        getUserPass: state => state.userPass
+        getUserPass: state => state.userPass,
+        getAggregateLateTimes: state => {
+            if (state.lateTimes.length !== 0) {
+                let aggregate = new Map();
+                state.lateTimes.forEach((lateTime) => {
+                    if (aggregate.has(lateTime.name)) {
+                        aggregate.set(lateTime.name, aggregate.get(lateTime.name) + lateTime.duration);
+                    } else {
+                        aggregate.set(lateTime.name, lateTime.duration);
+                    }
+                })
+                const sorted = Array.from(aggregate.entries(), (entry) => {
+                    console.log(entry)
+                    return  { name: entry[0], duration: entry[1] }
+                }).sort((a,b) => b.duration - a.duration);
+                console.log(sorted);
+                return sorted;
+            } else {
+                return [];
+            }
+        }
     }
 })

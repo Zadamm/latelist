@@ -22,6 +22,9 @@ export default {
                 username: user,
                 password: password
             }});
+    },
+    getLateTimes() {
+        return AXIOS.get('/latetime/');
     }
 }
 
