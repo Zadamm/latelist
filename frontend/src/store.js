@@ -61,6 +61,15 @@ export default new Vuex.Store({
               .catch(error => {
                   console.log("Error: " + error);
               })
+        },
+        saveLateTimes({dispatch}, lateTime) {
+            api.saveLateTimes(lateTime)
+              .then(response => {
+                  dispatch('loadLateTimes', response.data);
+              })
+              .catch(error => {
+                  console.log("Error: " + error);
+              })
         }
     },
     getters: {

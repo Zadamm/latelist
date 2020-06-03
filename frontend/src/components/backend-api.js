@@ -24,7 +24,10 @@ export default {
             }});
     },
     getLateTimes() {
-        return AXIOS.get('/latetime/');
+        return AXIOS.get('/latetimes/');
+    },
+    saveLateTimes(lateTime) {
+        return AXIOS.post('/latetimes/', lateTime)
     }
 }
 

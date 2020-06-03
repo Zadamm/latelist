@@ -1,23 +1,26 @@
 package de.jonashackt.springbootvuejs.controller;
 
 import de.jonashackt.springbootvuejs.domain.LateTime;
-import de.jonashackt.springbootvuejs.repository.LateTimeRepository;
+import de.jonashackt.springbootvuejs.service.LateTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController()
-@RequestMapping("/api/latetime")
+@RequestMapping("/api/latetimes")
 public class LateTimeController {
 
     @Autowired
-    private LateTimeRepository lateTimeRepository;
+    private LateTimeService lateTimeService;
 
     @GetMapping("/")
     public List<LateTime> findAll() {
-        return lateTimeRepository.findAll();
+        return lateTimeService.findAll();
+    }
+
+    @PostMapping("/")
+    public void save(@RequestBody LateTime lateTime) {
+        lateTimeService.save(lateTime);
     }
 }

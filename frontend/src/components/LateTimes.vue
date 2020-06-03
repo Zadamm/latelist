@@ -1,18 +1,17 @@
 <template>
-    <div class="late-table">
-        <b-button @click="modalShow = !modalShow">Open Modal</b-button>
-        <b-modal v-model="modalShow">Hello From Modal!</b-modal>
+    <div>
+        <late-times-save-modal></late-times-save-modal>
         <b-table striped hover :items="items"></b-table>
     </div>
 </template>
 
 <script>
+  import LateTimesSaveModal from './LateTimesSaveModal';
+
   export default {
     name: 'LateTimes',
-    data() {
-      return {
-        modalShow: false
-      }
+    components: {
+      LateTimesSaveModal
     },
     computed: {
       items: function () {
@@ -40,14 +39,14 @@
         }
     }
 
-    .late-table table >>> tbody tr:first-of-type{
+    table >>> tbody tr:first-of-type{
         background-color: red;
-        animation-name: flash;
+        /*animation-name: flash;*/
         animation-duration: 1s;
         animation-iteration-count: infinite;
     }
 
-    .late-table table >>> tbody tr:first-of-type:hover{
+    table >>> tbody tr:first-of-type:hover{
         animation-name: spin;
         animation-duration: 1s;
         animation-iteration-count: infinite;
