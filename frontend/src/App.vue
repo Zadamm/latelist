@@ -7,7 +7,8 @@
       <router-link to="/user">User</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/protected">Protected</router-link> |
-      <router-link to="/latetimes">LateTimes</router-link>
+      <router-link to="/latetimes">LateTimes</router-link> |
+      <router-link to="/latetimesstatistics">LateTimesStatistics</router-link>
     </div>
     <router-view :hellomsg="msg"></router-view>
   </div>

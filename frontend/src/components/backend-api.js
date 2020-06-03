@@ -28,6 +28,9 @@ export default {
     },
     saveLateTimes(lateTime) {
         return AXIOS.post('/latetimes/', lateTime)
+    },
+    getLateTimesStatistics() {
+        return AXIOS.get('/latetimes/groupByDate')
     }
 }
 

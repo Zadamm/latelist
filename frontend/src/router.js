@@ -7,6 +7,7 @@ import User from '@/components/User'
 import Login from '@/components/Login'
 import Protected from '@/components/Protected'
 import LateTimes from '@/components/LateTimes'
+import LateTimesStatistics from '@/components/LateTimesStatistics'
 
 import store from './store'
 
@@ -21,6 +22,7 @@ const router = new Router({
         { path: '/user', component: User },
         { path: '/login', component: Login },
         { path: '/latetimes', component: LateTimes },
+        { path: '/latetimesstatistics', component: LateTimesStatistics},
         {
             path: '/protected',
             component: Protected,

@@ -44,7 +44,7 @@
                     <b-form-datepicker
                             id="date-input"
                             name="date-input"
-                            v-model="lateTime.date"
+                            v-model="lateTime.dateOfLateTime"
                             :state="dateState"
                             required
                     ></b-form-datepicker>
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+
   export default {
     name: 'LateTimesSaveModal',
     data() {
@@ -63,7 +64,7 @@
         lateTime: {
           name: '',
           duration: 0,
-          date: null
+          dateOfLateTime: null
         },
         nameState: null,
         durationState: null,
@@ -75,7 +76,7 @@
         this.$refs.form.forEach(form => {
           if (form.id === 'name-input') this.nameState = form.checkValidity();
           if (form.id === 'duration-input') this.durationState = form.checkValidity();
-          if (form.id === 'date-input') this.dateState = this.lateTime.date !== null;
+          if (form.id === 'date-input') this.dateState = this.lateTime.dateOfLateTime !== null;
         })
         return this.nameState && this.durationState && this.dateState;
       },

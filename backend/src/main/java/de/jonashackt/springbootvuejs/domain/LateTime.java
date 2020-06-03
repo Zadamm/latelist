@@ -1,5 +1,6 @@
 package de.jonashackt.springbootvuejs.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ public class LateTime {
 
     Integer duration;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     Date dateOfLateTime;
 
     public LateTime(String name, Integer duration, Date dateOfLateTime) {
